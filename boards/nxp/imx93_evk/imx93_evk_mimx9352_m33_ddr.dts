@@ -18,6 +18,48 @@
 
 	ddr: memory@84000000 {
 		device_type = "memory";
-		reg = <0x84000000 DT_SIZE_M(4)>;
+		reg = <0x84000000 DT_SIZE_M(64)>;
 	};
+};
+
+&lcdif {
+        status = "okay";
+};
+
+&lpi2c2 {
+        pinctrl-0 = <&i2c2_default>;
+        pinctrl-names = "default";
+        status = "okay";
+};
+
+&mipi_dsi {
+	status = "okay";
+};
+
+&video_pll {
+	compatible = "nxp,imx93-video-pll";
+	rdiv = <1>;
+	mfi = <121>;
+	mfn = <0>;
+	mfd = <1>;
+	odiv = <6>;
+	pll-frequency = <484000000>;
+	status = "okay";
+};
+
+zephyr_lcdif: &lcdif {
+	width = <1920>;
+	height = <1080>;
+	pixel-format = "argb-8888";
+	media-axi-clk-rate = <400000000>;
+	media-apb-clk-rate = <133333334>;
+};
+
+display_i2c: &lpi2c2 {};
+
+zephyr_mipi_dsi: &mipi_dsi {
+	dpi-color-coding = "24-bit";
+	dpi-video-mode = "non-burst-sync-pulse";
+	dphy-ref-frequency = <24000000>;
+	data-rate-clock = <726000000>;
 };

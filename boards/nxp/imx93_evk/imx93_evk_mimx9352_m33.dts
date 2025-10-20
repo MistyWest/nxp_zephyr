@@ -8,6 +8,7 @@
 
 #include <nxp/nxp_imx93_m33.dtsi>
 #include "imx93_evk-pinctrl.dtsi"
+#include <dt-bindings/mipi_dsi/mipi_dsi.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
 / {
@@ -97,3 +98,4 @@
 	pinctrl-names = "default";
 	status = "okay";
 };
+

@@ -1,0 +1,6 @@
+config NXP_IMX93_VIDEO_PLL
+    bool "Initialize NXP iMX93 VIDEO PLL"
+    default y
+    help
+      Enable initialization of VIDEO PLL using device tree configuration.
+
