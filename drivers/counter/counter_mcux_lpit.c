@@ -221,13 +221,40 @@ static DEVICE_API(counter, mcux_lpit_driver_api) = {
 
 #define MCUX_LPIT_INSERT_CHANNEL_DEVICE_INTO_ARRAY(node) [DT_REG_ADDR(node)] = DEVICE_DT_GET(node),
 
-#define MCUX_LPIT_IRQ_CONFIG_DECLARATIONS(n)                                                       \
+#if IS_EQ(DT_NUM_IRQS(DT_DRV_INST(0)), 1)
+#define MCUX_LPIT_IRQ_CONFIG_DECLARATIONS(n) \
 	static void mcux_lpit_irq_config_func_##n(const struct device *dev)                        \
 	{                                                                                          \
 		IRQ_CONNECT(DT_INST_IRQ_BY_IDX(n, 0, irq), DT_INST_IRQ_BY_IDX(n, 0, priority),     \
 			    mcux_lpit_isr, DEVICE_DT_INST_GET(n), 0);                              \
 		irq_enable(DT_INST_IRQN(n));                                                       \
 	};
+#else /* Multiple interrupts */
+#define LPIT_IRQ_BY_IDX(node_id, prop, idx, cell) \
+	DT_IRQ_BY_NAME(node_id, \
+		DT_STRING_TOKEN_BY_IDX(node_id, prop, idx), cell)
+
+#define LPIT_IRQ_ENABLE_CODE(node_id, prop, idx) \
+	irq_enable(LPIT_IRQ_BY_IDX(node_id, prop, idx, irq));
+
+#define LPIT_IRQ_DISABLE_CODE(node_id, prop, idx) \
+	irq_disable(LPIT_IRQ_BY_IDX(node_id, prop, idx, irq));
+
+#define LPIT_IRQ_CONFIG_CODE(node_id, prop, idx) \
+	do {								\
+		IRQ_CONNECT(LPIT_IRQ_BY_IDX(node_id, prop, idx, irq), \
+		LPIT_IRQ_BY_IDX(node_id, prop, idx, priority), \
+		mcux_lpit_isr, \
+		DEVICE_DT_GET(node_id), 0); \
+		LPIT_IRQ_ENABLE_CODE(node_id, prop, idx); \
+	} while (false);
+
+#define MCUX_LPIT_IRQ_CONFIG_DECLARATIONS(n) \
+	static void mcux_lpit_irq_config_func_##n(const struct device *dev) \
+	{ \
+		DT_INST_FOREACH_PROP_ELEM(n, interrupt_names, LPIT_IRQ_CONFIG_CODE); \
+	}
+#endif
 
 #define MCUX_LPIT_SETUP_IRQ_CONFIG(n) MCUX_LPIT_IRQ_CONFIG_DECLARATIONS(n);
 #define MCUX_LPIT_SETUP_IRQ_ARRAY(ignored)
