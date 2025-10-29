@@ -1,0 +1,32 @@
+/*
+ * Copyright 2025 NXP
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/ {
+	/* Override/define performance states for FRDM-MCXN236 to make
+	 * on-demand policy selection deterministic in this test.
+	 */
+	performance-states {
+		pstate_0: pstate-0 {
+			status = "okay";
+		};
+
+		pstate_1: pstate-1 {
+			status = "okay";
+		};
+
+		pstate_2: pstate-2 {
+			status = "okay";
+			/* The on_demand policy selection rule is to sequentially
+			 * traverse the P-states in the Devicetree and select the
+			 * first one that satisfies cpu_load >= load-threshold.
+			 * To ensure that any load (0% to 100%) is covered, a
+			 * fallback level is necessary. In this policy tes, the
+			 * threshold for this "lowest level" is set to 0.
+			 */
+			load-threshold = <0>;
+		};
+	};
+};
