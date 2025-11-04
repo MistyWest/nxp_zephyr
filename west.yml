@@ -25,6 +25,8 @@ manifest:
       url-base: https://github.com/BabbleSim
     - name: MistyWest
       url-base: https://github.com/MistyWest
+    - name: vChavezB
+      url-base: https://github.com/vChavezB
 
   group-filter: [-babblesim, -optional]
 
@@ -324,7 +326,8 @@ manifest:
       groups:
         - crypto
     - name: mcuboot
-      revision: 96576b341ee19f1c3af6622256b0d4f3d408e1e3
+      remote: vChavezB
+      revision: 4dc91173f9383c515fa05148bb82f5df40bab7d6
       path: bootloader/mcuboot
       groups:
         - bootloader
