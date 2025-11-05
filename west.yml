@@ -327,7 +327,7 @@ manifest:
         - crypto
     - name: mcuboot
       remote: MistyWest
-      revision: e829f07c26e2faf3e1ebe44b1082583a7169de6e
+      revision: 19984e75424732280a026533390ad9d7a335035c
       path: bootloader/mcuboot
       groups:
         - bootloader
