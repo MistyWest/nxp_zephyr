@@ -326,8 +326,8 @@ manifest:
       groups:
         - crypto
     - name: mcuboot
-      remote: vChavezB
-      revision: 4dc91173f9383c515fa05148bb82f5df40bab7d6
+      remote: MistyWest
+      revision: e829f07c26e2faf3e1ebe44b1082583a7169de6e
       path: bootloader/mcuboot
       groups:
         - bootloader
