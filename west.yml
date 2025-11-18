@@ -25,8 +25,6 @@ manifest:
       url-base: https://github.com/BabbleSim
     - name: MistyWest
       url-base: https://github.com/MistyWest
-    - name: vChavezB
-      url-base: https://github.com/vChavezB
 
   group-filter: [-babblesim, -optional]
 
