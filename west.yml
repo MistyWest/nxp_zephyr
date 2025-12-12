@@ -23,6 +23,8 @@ manifest:
       url-base: https://github.com/zephyrproject-rtos
     - name: babblesim
       url-base: https://github.com/BabbleSim
+    - name: MistyWest
+      url-base: https://github.com/MistyWest
 
   group-filter: [-babblesim, -optional]
 
@@ -210,7 +212,8 @@ manifest:
       groups:
         - hal
     - name: hal_nxp
-      revision: 75bb1262e5bc2a701c63602734738a9c8b096ee5
+      remote: MistyWest
+      revision: 3f0cad50ceab16a5f8eee0862b63e5edc267aed5
       path: modules/hal/nxp
       groups:
         - hal
@@ -321,7 +324,8 @@ manifest:
       groups:
         - crypto
     - name: mcuboot
-      revision: 96576b341ee19f1c3af6622256b0d4f3d408e1e3
+      remote: MistyWest
+      revision: 19984e75424732280a026533390ad9d7a335035c
       path: bootloader/mcuboot
       groups:
         - bootloader
