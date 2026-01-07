@@ -213,7 +213,7 @@ manifest:
         - hal
     - name: hal_nxp
       remote: MistyWest
-      revision: 3f0cad50ceab16a5f8eee0862b63e5edc267aed5
+      revision: 07613669baa863e3ddf5841bf1c7025ea4847ab8
       path: modules/hal/nxp
       groups:
         - hal
@@ -325,7 +325,7 @@ manifest:
         - crypto
     - name: mcuboot
       remote: MistyWest
-      revision: 19984e75424732280a026533390ad9d7a335035c
+      revision: 3c6f842799ef328444126684a1202c1162067386
       path: bootloader/mcuboot
       groups:
         - bootloader
